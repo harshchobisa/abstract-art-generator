@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+from PIL import Image
+
+names = ['rotated', 'vertical_flip', 'horizontal_flip']
+functions = [Image.ROTATE_90, Image.FLIP_TOP_BOTTOM, Image.FLIP_LEFT_RIGHT]
+count = 0
+for i in range(2782):
+    if i % 278 == 0:
+        print(str((i*100)//2780) + " percent done")
+
+    im  = Image.open(f"./data/Abstract_image_{i}.jpg")
+    im.save(f"./data_augmented/Abstract_image_{count}.jpg")
+    count += 1
+
+    for j in range(3):
+        new_image = im.transpose(functions[j])
+        new_image.save(f"./data_augmented/Abstract_image_{count}.jpg")
+        count += 1
+        
+print("finished")
+
+
+
+
